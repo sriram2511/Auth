@@ -22,7 +22,7 @@ app.use(cookieParser())
 
 const routeFiles = fs.readdirSync('./src/routes')
 routeFiles.forEach((file) => {
-  //use dynamice import
+  //use dynamic import
   import(`./src/routes/${file}`)
     .then((route) => {
       app.use('/api/v1', route.default)
@@ -31,10 +31,9 @@ routeFiles.forEach((file) => {
       console.log('failed to log route file')
     })
 })
+
 console.log(routeFiles)
-app.get('/test', (req, res) => {
-  res.status(200).json({ message: 'Server is working!' })
-})
+
 const server = async () => {
   try {
     await connect()
